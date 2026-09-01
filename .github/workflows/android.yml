@@ -17,6 +17,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # Seconds, and needs no toolchain — so it runs before the Gradle work and fails
+      # fast if the card transcription or the timing model has drifted. The chart is
+      # hand-copied from a physical card; nothing else in the build would catch a pad
+      # in the wrong cell or a code that no longer matches the ITU alphabet.
+      - name: Verify card chart and timing
+        run: |
+          node tools/verify_chart.js \
+            app/src/main/java/com/normo/morsetrainer/core/CardChart.kt
+          node tools/verify_timing.js
+
       - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
