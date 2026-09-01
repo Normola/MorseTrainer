@@ -25,6 +25,7 @@ jobs:
         run: |
           node tools/verify_chart.js \
             app/src/main/java/com/normo/morsetrainer/core/CardChart.kt
+          node tools/verify_tree.js
           node tools/verify_timing.js
 
       - name: Set up JDK 17

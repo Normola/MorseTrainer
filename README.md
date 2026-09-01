@@ -8,6 +8,12 @@ The chart is transcribed node for node from the card: all 26 letters, same grid,
 shapes, same axis-aligned traces. It is not a generic Morse tree redrawn — `CardChart.kt`
 carries the actual printed coordinates.
 
+The Card tab has three modes. **Card** is the physical card, letters only. **+ Digits**
+and **Everything** are generated trees that add the characters the card has no room for —
+digits sit at depth 5 and punctuation at depth 7, past what an 8×7 grid can hold. Those
+are wider than a phone screen and scroll sideways. Small unlabelled pads in the generated
+trees are junctions: real positions you pass through that no character lands on.
+
 ## Screens
 
 | Tab | What it does |
@@ -82,6 +88,14 @@ URL — screenshot it once and it always resolves to the newest build.
   pads in a cell, every edge axis-aligned, no trace running through an unrelated pad, no
   two traces overlapping, every shape matching its final element. It also prints the grid,
   which should look like the card.
+
+  ```bash
+  node tools/verify_tree.js
+  ```
+
+  mirrors the generated-tree layout and checks every character is placed exactly once,
+  no two pads share a cell, every parent is centred over its children, and dits always
+  branch left of dahs.
 
   ```bash
   node tools/verify_timing.js
