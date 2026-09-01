@@ -188,14 +188,14 @@ private fun OutputToggles(vm: MorseViewModel) {
                 subtitle = if (vm.outputs.hasTorch) null else "No flash on this device",
                 checked = settings.torchOutput && vm.outputs.hasTorch,
                 enabled = vm.outputs.hasTorch,
-                onCheckedChange = settings::setTorchOutput,
+                onCheckedChange = { settings.torchOutput = it },
             )
             ToggleRow(
                 label = "Vibration",
                 subtitle = if (vm.outputs.hasVibrator) null else "No vibrator on this device",
                 checked = settings.vibrationOutput && vm.outputs.hasVibrator,
                 enabled = vm.outputs.hasVibrator,
-                onCheckedChange = settings::setVibrationOutput,
+                onCheckedChange = { settings.vibrationOutput = it },
             )
         }
     }

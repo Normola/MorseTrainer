@@ -53,7 +53,7 @@ fun SettingsScreen(
                 range = 5f..40f,
                 steps = 34,
                 display = "${settings.charWpm} wpm",
-                onChange = { settings.setCharWpm(it.toInt()) },
+                onChange = { settings.charWpm = it.toInt() },
             )
             SliderRow(
                 label = "Overall speed",
@@ -61,7 +61,7 @@ fun SettingsScreen(
                 range = 5f..40f,
                 steps = 34,
                 display = "${settings.effectiveWpm} wpm",
-                onChange = { settings.setEffectiveWpm(it.toInt()) },
+                onChange = { settings.effectiveWpm = it.toInt() },
             )
             Text(
                 text = if (settings.effectiveWpm < settings.charWpm) {
@@ -89,7 +89,7 @@ fun SettingsScreen(
                 range = 300f..1200f,
                 steps = 0,
                 display = "${settings.toneHz} Hz",
-                onChange = { settings.setToneHz(it.toInt()) },
+                onChange = { settings.toneHz = it.toInt() },
             )
             SliderRow(
                 label = "Volume",
@@ -97,7 +97,7 @@ fun SettingsScreen(
                 range = 0f..1f,
                 steps = 0,
                 display = "${(settings.volume * 100).toInt()}%",
-                onChange = settings::setVolume,
+                onChange = { settings.volume = it },
             )
             OutlinedButton(onClick = { vm.play("V") }) {
                 Text("Test tone")
@@ -109,7 +109,7 @@ fun SettingsScreen(
                 KeyMode.entries.forEach { mode ->
                     FilterChip(
                         selected = settings.keyMode == mode,
-                        onClick = { settings.setKeyMode(mode) },
+                        onClick = { settings.keyMode = mode },
                         label = { Text(mode.label) },
                     )
                 }
@@ -119,7 +119,7 @@ fun SettingsScreen(
                 subtitle = "Judge dit against dah from how you actually key, " +
                     "not from the speed setting",
                 checked = settings.adaptiveKeying,
-                onCheckedChange = settings::setAdaptiveKeying,
+                onCheckedChange = { settings.adaptiveKeying = it },
             )
         }
 

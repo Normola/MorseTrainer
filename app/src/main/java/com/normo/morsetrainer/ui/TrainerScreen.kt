@@ -136,8 +136,8 @@ fun TrainerScreen(
             order = settings.learningOrder,
             level = settings.kochLevel,
             pool = pool,
-            onOrderChange = settings::setLearningOrder,
-            onLevelChange = settings::setKochLevel,
+            onOrderChange = { settings.learningOrder = it },
+            onLevelChange = { settings.kochLevel = it },
         )
 
         Spacer(Modifier.height(12.dp))
